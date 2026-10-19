@@ -54,6 +54,119 @@ Hole numbers correspond to these positions:
 
 > **Important:** Python list indexes start at `0`, but players choose holes numbered from `1` to `9`.
 
+## 📚 Supplemental reading — prepare before coding
+
+You do **not** need to read entire documentation pages. Focus on the topics and small examples below. Spend approximately **15–20 minutes** on this section before starting the challenge.
+
+### 1. Python lists and indexes (required)
+
+**Read:** [Python Tutorial — Lists](https://docs.python.org/3/tutorial/introduction.html#lists)
+
+A list stores several values in a specific order. Each item has an **index**, beginning at `0`. You can access an item or replace it with a new value.
+
+```python
+holes = ["empty", "empty", "empty"]
+print(holes[0])       # first hole
+holes[1] = "mole"    # change the second hole
+print(holes)
+```
+
+**Try it:** Make a list of five holes. Put a mole in the last hole. What index did you use?
+
+### 2. `while` loops (required)
+
+**Read:** [Python Tutorial — First Steps Towards Programming](https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming) (look for the `while` example)
+
+A `while` loop runs repeatedly **as long as its condition is true**. Update the counter inside the loop so that it eventually stops.
+
+```python
+round_number = 1
+while round_number <= 3:
+    print("Round", round_number)
+    round_number += 1
+```
+
+**Try it:** Change the code to print five rounds. What happens if you remove `round_number += 1`? (Think first; avoid running an infinite loop.)
+
+### 3. Conditions: `if` and `else` (required)
+
+**Read:** [Python Tutorial — `if` Statements](https://docs.python.org/3/tutorial/controlflow.html#if-statements)
+
+Use conditions to decide whether a player hit the mole.
+
+```python
+chosen_hole = 2
+mole_hole = 2
+if chosen_hole == mole_hole:
+    print("Hit!")
+else:
+    print("Miss!")
+```
+
+**Try it:** Change `chosen_hole` so the program prints `Miss!`. Explain why `==` is different from `=`.
+
+### 4. User input and converting strings (required)
+
+**Read:** [Python Built-in Functions — `input()`](https://docs.python.org/3/library/functions.html#input) and [`int()`](https://docs.python.org/3/library/functions.html#int)
+
+`input()` gives you **text**, even when someone types a number. Use `int()` to convert valid numeric text into an integer.
+
+```python
+answer = input("Choose a hole (1–9): ")
+hole_number = int(answer)
+print("You chose:", hole_number)
+```
+
+**Try it:** Enter `4`, then try `hello`. What changes? Later, you will prevent invalid input from crashing your game.
+
+### 5. Random numbers (required)
+
+**Read:** [Python `random` module — `randint()`](https://docs.python.org/3/library/random.html#random.randint)
+
+`random.randint(a, b)` selects a random integer from `a` **through** `b`, including both endpoints. You don't need to install the module.
+
+```python
+import random
+
+position = random.randint(0, 8)
+print(position)
+```
+
+**Try it:** Run the example several times. Why is `0` to `8` useful for a list of nine holes?
+
+### 6. Checking input safely (for Step 6)
+
+**Read:** [Python String Methods — `str.isdigit()`](https://docs.python.org/3/library/stdtypes.html#str.isdigit)
+
+Before calling `int()`, you can check that the input contains digits. You must **also** check that the resulting number is in the allowed range of 1–9.
+
+```python
+answer = input("Enter a hole number: ")
+if answer.isdecimal():
+    number = int(answer)
+    print("You typed a number:", number)
+else:
+    print("Please enter digits only")
+```
+
+**Try it:** Test `3`, `11`, `hello`, and an empty input. Which values still need a range check?
+
+### Quick reference
+
+| Python feature | Purpose in the game |
+|---|---|
+| `board = ["🕳️"] * 9` | Create nine empty holes |
+| `board[index]` | Read one hole |
+| `board[index] = "🐹"` | Put the mole in a hole |
+| `random.randint(0, 8)` | Choose a random list index |
+| `input()` | Read the player's choice |
+| `int(...)` | Convert valid text to a number |
+| `if` / `else` | Determine hit or miss |
+| `while` | Repeat the rounds |
+| `len(board)` | Count the holes (useful in extensions) |
+
+**Ready-to-code check:** Before working on the whole game, make sure you can create a list, replace one item, run a three-iteration `while` loop, and produce a random index. You can return to these links whenever you're stuck.
+
 ## 🧩 Step-by-step instructions
 
 ### Step 1 — Create the board
